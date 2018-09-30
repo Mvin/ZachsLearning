@@ -17,3 +17,7 @@ SimpleStuff/.vs/SimpleStuff/v15/Server/sqlite3/storage.ide
 SimpleStuff/.vs/SimpleStuff/v15/Server/sqlite3/db.lock
 SimpleStuff/.vs/SimpleStuff/v15/.suo
 SimpleStuff/SimpleStuff/obj/Debug/SimpleStuff.csprojAssemblyReference.cache
+SimpleStuff/SimpleStuff/obj/Debug/SimpleStuff.csproj.CopyComplete
+SimpleStuff/SimpleStuff/bin/Debug/Newtonsoft.Json.xml
+SimpleStuff/SimpleStuff/bin/Debug/Newtonsoft.Json.dll
+SimpleStuff/SimpleStuff/bin/Debug/Matt.json
