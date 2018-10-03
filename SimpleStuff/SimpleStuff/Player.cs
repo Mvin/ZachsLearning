@@ -48,11 +48,13 @@ namespace SimpleStuff
         /// Load a players save file, the file must exist for this to take place.
         /// </summary>
         /// <param name="filePath"></param>
-        public void LoadPlayer(string filePath)
+        public void LoadPlayer(string name)
         {
-            if (File.Exists(filePath))
+            string PlayerFile = String.Format("{0}.json", name);
+
+            if (File.Exists(PlayerFile))
             {
-                string FileContents = File.ReadAllText(filePath);
+                string FileContents = File.ReadAllText(PlayerFile);
                 Player SavedState = JsonConvert.DeserializeObject<Player>(FileContents);
                 Level = SavedState.Level;
                 Exp = SavedState.Exp;
