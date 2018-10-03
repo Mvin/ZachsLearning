@@ -38,6 +38,7 @@ namespace SimpleStuff
             Exp = 0;
             Name = name;
             Stats = new Stats();
+            Stats.Health = 10;
         }
 
         public int GetLevel() { return Level; }
@@ -85,8 +86,18 @@ namespace SimpleStuff
         public long GiveExp(int exp)
         {
             Exp += exp;
+
             Level = CalcLevel(Exp);
+            
             return Exp;
+        }
+
+        public int IncreaseHealth(int newhealth)
+        {
+            Stats.Health +=newhealth;
+            return Stats.Health;
+
+
         }
 
         /// <summary>

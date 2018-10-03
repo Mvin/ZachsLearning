@@ -11,43 +11,31 @@ namespace SimpleStuff
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("make a password");
-            var pass = Console.ReadLine();
-            Console.WriteLine("password is " + pass + "");
-            Console.Clear();
             
-            while (true)
-            {
+            Console.WriteLine("create a username");
+            var UName = Console.ReadLine();
+            Console.WriteLine("your name is " + UName + "");
+            Console.Clear();
 
-                Console.WriteLine("what was the password");
-                
-                var attempt = Console.ReadLine();
-                if (attempt == pass)
-                {
-                    Console.WriteLine("the game has started");
-                    
-                    Game();
-                    Thread.Sleep(2000);
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("how did you forget already");
-                }
+            Player currentplayer = new Player(UName);
+            currentplayer.LoadPlayer(UName);
+            Console.WriteLine("Health: " +currentplayer.Stats.Health);
+            Console.WriteLine("Level: " +currentplayer.Level);
+            Console.WriteLine("Experience: " + currentplayer.Exp);
 
-                Thread.Sleep(2000);
-            }
+            Game(currentplayer);
         }
-        static void Game()
+        static void Game(Player ThisGuy)
         {
+            Console.WriteLine("Hello " +ThisGuy.GetName());
             Console.WriteLine("buckle up");
             Monster blob = new Monster(10, "blob");
             
-            Console.WriteLine("a "+blob.Name+" has spawned with " +blob.Health+ " health");
+            
             while (blob.Health > 0)
             {
-                Console.WriteLine("what do you want to do, attack or run");
+                Console.WriteLine("a "+blob.Name+" has spawned with " +blob.Health+ " health");
+                Console.WriteLine("what do you want to do, attack or save");
                 var action = Console.ReadLine();
                 switch (action) {
                     case "attack":
@@ -62,25 +50,30 @@ namespace SimpleStuff
                         {
                             Console.WriteLine("you throw a rock and deal " + dmg + " damage");
                             blob.damageHealth(dmg);
-                            Console.WriteLine("the " + blob.Name + "has " + blob.Health + "left. YOU GOT THIS!!!");
+                            Console.WriteLine("the " + blob.Name + " has " + blob.Health + " left. YOU GOT THIS!!!");
 
                             if (blob.Health <= 0)
                             {
                                 Console.WriteLine("You defeated the " + blob.Name + "! Congradulations!!");
+                                ThisGuy.GiveExp(25);
+                                ThisGuy.IncreaseHealth(1);
+
+                                blob = new Monster(10, "blob");
                             }
                         }
 
                         break;
-                    case "run":
-                        Console.WriteLine("GAME OVER");
+                    case "save":
+                        Console.WriteLine("Saved");
                         blob.Health = 0;
+                        ThisGuy.SavePlayer();
                         break;
 
                 default: Console.WriteLine("you had 2 options, and you didnt choose one -_- ");
                         break;
                 }
             }
-
+           
             
             Thread.Sleep(2000);
         }
